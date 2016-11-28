@@ -3,6 +3,7 @@ Layout=null;
 
 }
 
+@model CoffeeShopApp.Models.UserData
 
 <!DOCTYPE html>
 <html lang="en">
@@ -150,12 +151,13 @@ Layout=null;
       <!-- content -->
       <div class="content">
         <h3>Signup for Updates!</h3>
-        <form action="ProcessSignUp" method="get">
-            Name: <input type="text" name="UName" />
+        <form action="ProcessSignUp" method="post">
+            Name: <input type="text" name="Uname" />
             <br />
             Email: <input type="text" name="Email" />
             <input type="submit" value="Signup" />
         </form>
+
           <h3>@ViewBag.Message</h3>
       </div>
       <!-- end of content -->

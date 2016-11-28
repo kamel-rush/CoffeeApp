@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+using CoffeeShopApp.Models;
+
 namespace CoffeeShopApp.Controllers
 {
     public class MainController : Controller
@@ -14,9 +16,9 @@ namespace CoffeeShopApp.Controllers
             return View();
         }
 
-        public ActionResult ProcessSignUp(string UName, string Email)
+        public ActionResult ProcessSignUp(UserData data)
         {
-            ViewBag.Message = "Thanks " + UName+"("+Email+")";
+            ViewBag.Message = "Thanks " + data.Uname+"("+data.Email+")";
             return View("Index");
             //return Redirect("https://www.google.com"); 
 
