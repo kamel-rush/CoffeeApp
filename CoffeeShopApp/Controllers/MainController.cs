@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 using CoffeeShopApp.Models;
 
+
 namespace CoffeeShopApp.Controllers
 {
     public class MainController : Controller
@@ -13,7 +14,16 @@ namespace CoffeeShopApp.Controllers
         // GET: Main
         public ActionResult Index()
         {
+            ViewBag.ProductList = GetProductList();
             return View();
+        }
+
+        private static List<Product> GetProductList()
+        {
+            CoffeeShopDBEntities dbContext = new CoffeeShopDBEntities();
+
+            List<Product> productList = dbContext.Products.ToList();
+            return productList;
         }
 
         public ActionResult ProcessSignUp(UserData data)
@@ -27,6 +37,8 @@ namespace CoffeeShopApp.Controllers
 
         public ActionResult Order(string product)
         {
+            ViewBag.ProductList = GetProductList();
+
             if (Session["shoppingCart"] == null)
             {
                 Dictionary<string, Product> tempSC = new

@@ -166,6 +166,24 @@
                     </div>
                     <div class="cl">&nbsp;</div>
                 </section>
+                <table border="1">
+                    @foreach (var item in ViewBag.ProductList)
+                    {
+                        <tr>
+                            <td>
+                                @item.Name
+                            </td>
+                            <td>
+                                @item.Price
+                            </td>
+                            <td>
+                                <a href="/Main/Order?product=@item.Name">Add to cart</a>
+                            </td>
+                        </tr>
+
+                    }
+
+                </table>
                 <!-- end of cols -->
                 <!-- content -->
                 <div class="content">
@@ -200,6 +218,7 @@
                                             <td> @item.Name </td>
                                             <td> @item.Price </td>
                                             <td> @item.Quantity </td>
+
                                         </tr>
                                     }
                                 }
