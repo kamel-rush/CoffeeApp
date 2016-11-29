@@ -19,9 +19,40 @@ namespace CoffeeShopApp.Controllers
         public ActionResult ProcessSignUp(UserData data)
         {
             ViewBag.Message = "Thanks " + data.Uname+"("+data.Email+")";
-            return View("Index");
+           
+            return View("Index",data);
             //return Redirect("https://www.google.com"); 
 
+        }
+
+        public ActionResult Order(string product)
+        {
+            if (Session["shoppingCart"] == null)
+            {
+                Dictionary<string, Product> tempSC = new
+                    Dictionary<string, Product>();
+
+                Session["shoppingCart"] = tempSC; 
+            }
+
+            Dictionary<string, Product> shoppingCart = 
+                (Dictionary<string, Product>)Session["shoppingCart"];
+
+
+            if (!shoppingCart.ContainsKey(product))//first time adding the product
+            {
+                shoppingCart.Add(product, new Product(product, 1, 1));
+
+            }
+
+            else
+            {
+                shoppingCart[product].Quantity += 1;
+            }
+
+            ViewBag.ShoppingCart=shoppingCart.Values.ToList();
+
+            return View("Index");
         }
     }
 }
