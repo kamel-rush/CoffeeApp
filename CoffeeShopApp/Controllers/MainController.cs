@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 
 using CoffeeShopApp.Models;
-
+using System.Data.SqlClient;
 
 namespace CoffeeShopApp.Controllers
 {
@@ -17,6 +17,39 @@ namespace CoffeeShopApp.Controllers
             ViewBag.ProductList = GetProductList();
             return View();
         }
+
+        public ActionResult AddProduct()
+        {
+
+            return View();
+        }
+
+        public ActionResult Admin()
+        {
+            ViewBag.ProductList = GetProductList();
+            return View();
+        }
+
+        public ActionResult Delete(string product)
+        {
+            CoffeeShopDBEntities dbContext = new CoffeeShopDBEntities();
+
+            Product toDelete = dbContext.Products.Find(product);
+
+            dbContext.Products.Remove(toDelete);
+
+            dbContext.SaveChanges();// makes change on the DB
+
+            ViewBag.ProductList = GetProductList();
+            return View("Admin");
+
+             
+
+
+        }
+
+        
+
 
         private static List<Product> GetProductList()
         {
