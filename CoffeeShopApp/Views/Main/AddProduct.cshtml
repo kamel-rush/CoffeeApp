@@ -12,7 +12,7 @@
     <title>AddProduct</title>
 </head>
 <body>
-    @using (Html.BeginForm()) 
+    @using (Html.BeginForm("InsertProduct", "Main"))
     {
         @Html.AntiForgeryToken()
         

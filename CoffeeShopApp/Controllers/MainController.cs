@@ -24,6 +24,20 @@ namespace CoffeeShopApp.Controllers
             return View();
         }
 
+        public ActionResult InsertProduct(Product p)
+        {
+            CoffeeShopDBEntities dbContext = new CoffeeShopDBEntities();
+
+            dbContext.Products.Add(p);
+
+            dbContext.SaveChanges();
+
+            ViewBag.ProductList = GetProductList();
+
+            return View("Admin");
+
+        }
+
         public ActionResult Admin()
         {
             ViewBag.ProductList = GetProductList();
