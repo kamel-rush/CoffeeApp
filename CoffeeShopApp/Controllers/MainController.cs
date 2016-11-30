@@ -23,6 +23,13 @@ namespace CoffeeShopApp.Controllers
             CoffeeShopDBEntities dbContext = new CoffeeShopDBEntities();
 
             List<Product> productList = dbContext.Products.ToList();
+
+         //   List<Product> productList =
+         //(from p in dbContext.Products
+         //    select p).ToList();
+
+            
+
             return productList;
         }
 
