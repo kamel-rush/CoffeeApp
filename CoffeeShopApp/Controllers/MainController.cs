@@ -12,6 +12,7 @@ namespace CoffeeShopApp.Controllers
     public class MainController : Controller
     {
         // GET: Main
+       // [Authorize]
         public ActionResult Index()
         {
             ViewBag.ProductList = GetProductList();
@@ -47,7 +48,7 @@ namespace CoffeeShopApp.Controllers
         public ActionResult Delete(string product)
         {
             CoffeeShopDBEntities dbContext = new CoffeeShopDBEntities();
-
+            
             Product toDelete = dbContext.Products.Find(product);
 
             dbContext.Products.Remove(toDelete);
@@ -58,7 +59,7 @@ namespace CoffeeShopApp.Controllers
             return View("Admin");
 
              
-
+            
 
         }
 
